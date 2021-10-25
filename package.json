@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://gitlab.com/twitchkidd/otti/issues"
   },
-  "homepage": "https://gitlab.com/twitchkidd/otti#readme"
+  "homepage": "https://gitlab.com/twitchkidd/otti#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
