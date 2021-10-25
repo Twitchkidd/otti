@@ -1,39 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
-class App extends Component {
-	state = {
-		data: null,
-	};
+const Main = styled.main`
+	display: grid;
+	place-items: center;
+	color: #f1f1f1;
+`;
 
-	componentDidMount() {
-		this.callBackendAPI()
-			.then(res => this.setState({ data: res.express }))
-			.catch(err => console.log(err));
-	}
-	// fetching the GET route from the Express server which matches the GET route from server.js
-	callBackendAPI = async () => {
+const App = () => {
+	const [data, setData] = useState(null);
+	const callBackendAPI = async () => {
 		const response = await fetch('/express_backend');
 		const body = await response.json();
-
 		if (response.status !== 200) {
 			throw Error(body.message);
 		}
 		return body;
 	};
-
-	render() {
-		return (
-			<div className='App'>
-				<header className='App-header'>
-					<img src={logo} className='App-logo' alt='logo' />
-					<h1 className='App-title'>Welcome to React</h1>
-				</header>
-				<p className='App-intro'>{this.state.data}</p>
-			</div>
-		);
-	}
-}
+	useEffect(() => {
+		callBackendAPI()
+			.then(res => setData(res.express))
+			.catch(err => console.log(err));
+	}, []);
+	return (
+		<Main>
+			<h1>Otti</h1>
+			<h2>Big O Testing Tool</h2>
+			<div>{data}</div>
+		</Main>
+	);
+};
 
 export default App;
