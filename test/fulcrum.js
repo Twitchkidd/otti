@@ -4,18 +4,18 @@
 
 const array10 = [8, 4, 6, 2, 8, 4, 2, 4, 8, 2];
 
-// const range50 = range(50);
-// const array101 = [...range50, 51, ...range50.reverse()];
+const range = n => [...Array(n).keys()].map(x => x + 1);
 
-// const range500 = range(500);
-// const array1001 = [...range500, 501, ...range500.reverse()];
+const range50 = range(50);
+const array101 = [...range50, 51, ...range50.reverse()];
+
+const range500 = range(500);
+const array1001 = [...range500, 501, ...range500.reverse()];
 
 const tenK = 10_000;
 const hundredK = 100_000;
 const million = 1_000_000;
 const tenM = 10_000_000;
-
-const range = n => [...Array(n).keys()].map(x => x + 1);
 
 const testArray = n => {
 	const rN = range(n);
@@ -55,7 +55,7 @@ const firstFulcrumRecursive = arr => {
 	if (arr.length === 1) {
 		return 1;
 	}
-	let res = -1;
+	let result = -1;
 	const traverse = (before, after, index) => {
 		if (before === after) {
 			result = index;
@@ -114,4 +114,40 @@ const init = () => {
 
 // init();
 
-module.exports = { firstFulcrum, firstFulcrumRecursive };
+const inputs = [
+	{
+		label: 'array10',
+		value: array10,
+	},
+	{
+		label: 'array101',
+		value: array101,
+	},
+	{
+		label: 'array1001',
+		value: array1001,
+	},
+	{
+		label: 'tenK',
+		value: testArray(tenK),
+	},
+	{
+		label: 'hundredK',
+		value: testArray(hundredK),
+	},
+	{
+		label: 'million',
+		value: testArray(million),
+	},
+	{
+		label: 'tenM',
+		value: testArray(tenM),
+	},
+];
+
+const inputSets = [inputs.slice(0, 3), inputs.slice()];
+
+module.exports = {
+	functions: [firstFulcrum, firstFulcrumRecursive],
+	inputSets,
+};

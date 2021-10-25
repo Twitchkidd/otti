@@ -21,12 +21,12 @@
 
 const fulc = require('./test/fulcrum');
 
-const hundredKbyTenX = [1, 10, 100, 1_000, 10_000, 100_000];
-const tenMbyHundredX = [10, 1_000, 100_000, 10_000_000];
+// const hundredKbyTenX = [1, 10, 100, 1_000, 10_000, 100_000];
+// const tenMbyHundredX = [10, 1_000, 100_000, 10_000_000];
 
-const array10 = [8, 4, 6, 2, 8, 4, 2, 4, 8, 2];
+// const array10 = [8, 4, 6, 2, 8, 4, 2, 4, 8, 2];
 
-const range = n => [...Array(n).keys()].map(x => ++x);
+// const range = n => [...Array(n).keys()].map(x => ++x);
 
 const test = (fn, input) => {
 	const t1 = performance.now();
