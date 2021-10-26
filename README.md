@@ -14,4 +14,4 @@ And that should have the server run the tests and be listening on port 5000, and
 
 It obviously needs some design work, but the data is getting through!
 
-[Screenshot of the visualizer]()
+[Screenshot of the visualizer](https://github.com/Twitchkidd/otti/blob/main/visualizer/screenshot2021-10-26.png)
