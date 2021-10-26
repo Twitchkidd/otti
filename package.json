@@ -18,6 +18,7 @@
   },
   "homepage": "https://gitlab.com/twitchkidd/otti#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "react-vis": "^1.11.7"
   }
 }

@@ -2,27 +2,15 @@
 // * numbers before equals the sum of the numbers ahead, and return the
 // * index or return -1;
 
-const array10 = [8, 4, 6, 2, 8, 4, 2, 4, 8, 2];
-
-const range = n => [...Array(n).keys()].map(x => x + 1);
-
-const range50 = range(50);
-const array101 = [...range50, 51, ...range50.reverse()];
-
-const range500 = range(500);
-const array1001 = [...range500, 501, ...range500.reverse()];
-
-const tenK = 10_000;
-const hundredK = 100_000;
-const million = 1_000_000;
-const tenM = 10_000_000;
+// const array10 = [8, 4, 6, 2, 8, 4, 2, 4, 8, 2];
 
 const testArray = n => {
+	const range = n => [...Array(n).keys()].map(x => x + 1);
 	const rN = range(n);
 	return [...rN, 42, ...rN.reverse()];
 };
 
-const firstFulcrum = arr => {
+const firstFulcrumTab = arr => {
 	if (arr === undefined || arr.length === 0) {
 		return -1;
 	}
@@ -76,78 +64,16 @@ const firstFulcrumRecursive = arr => {
 	return result;
 };
 
-const init = () => {
-	console.log(`
-  Welcome to the first fulcrum point checker program!
-  `);
-	console.time(`firstFulcrumRecursive - 10`);
-	console.log(firstFulcrumRecursive(array10));
-	console.timeEnd(`firstFulcrumRecursive - 10`);
-	// console.time(`firstFulcrumRecursive - ${tenK}`);
-	// console.log(firstFulcrumRecursive(testArray(tenK)));
-	// console.timeEnd(`firstFulcrumRecursive - ${tenK}`);
-	// console.time(`firstFulcrum - ${tenK}`);
-	// console.log(firstFulcrum(testArray(tenK)));
-	// console.timeEnd(`firstFulcrum - ${tenK}`);
-	// console.time(`firstFulcrum - ${hundredK}`);
-	// console.log(firstFulcrum(testArray(hundredK)));
-	// console.timeEnd(`firstFulcrum - ${hundredK}`);
-	// console.time(`firstFulcrum - ${million}`);
-	// console.log(firstFulcrum(testArray(million)));
-	// console.timeEnd(`firstFulcrum - ${million}`);Z
-	// console.time(`firstFulcrum - ${tenM}`);
-	// console.log(firstFulcrum(testArray(tenM)));
-	// console.timeEnd(`firstFulcrum - ${tenM}`);
-	console.time(`firstFulcrum - 10`);
-	console.log(firstFulcrum(array10));
-	console.timeEnd(`firstFulcrum - 10`);
-	// console.time(`firstFulcrum - 101`);
-	// console.log(firstFulcrum(array101));
-	// console.timeEnd(`firstFulcrum - 101`);
-	// console.time(`firstFulcrum - 1001`);
-	// console.log(firstFulcrum(array1001));
-	// console.timeEnd(`firstFulcrum - 1001`);
-	console.log(`
-  Thanks for using the first fulcrum point checker program!
-  `);
-};
+const inputs = [10, 100, 1_000, 10_000, 100_000, 1_000_000, 10_000_000];
 
-// init();
-
-const inputs = [
-	{
-		label: 'array10',
-		value: array10,
-	},
-	{
-		label: 'array101',
-		value: array101,
-	},
-	{
-		label: 'array1001',
-		value: array1001,
-	},
-	{
-		label: 'tenK',
-		value: testArray(tenK),
-	},
-	{
-		label: 'hundredK',
-		value: testArray(hundredK),
-	},
-	{
-		label: 'million',
-		value: testArray(million),
-	},
-	{
-		label: 'tenM',
-		value: testArray(tenM),
-	},
+const inputSets = [
+	{ functions: [0, 1], inputs: inputs.slice(0, 3) },
+	{ functions: [1], inputs },
 ];
 
-const inputSets = [inputs.slice(0, 3), inputs.slice()];
-
 module.exports = {
-	functions: [firstFulcrum, firstFulcrumRecursive],
+	name: 'First Fulcrum',
+	functions: [firstFulcrumRecursive, firstFulcrumTab],
 	inputSets,
+	genFunction: testArray,
 };
