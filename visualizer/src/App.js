@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import styled from 'styled-components';
 import { XYPlot, XAxis, YAxis, MarkSeries } from 'react-vis';
 import './styles/react-vis.css';
 
 const Main = styled.main`
-	display: grid;
-	place-items: center;
 	color: #f1f1f1;
+	text-align: left;
+	padding: 0 2em;
+	column-count: 3;
+	column-gap: 4em;
 `;
 
 const Chart = ({ data }) => (
@@ -52,46 +54,47 @@ const App = () => {
 		console.log(data);
 	}, [data]);
 	return (
-		<Main>
-			<h1>Otti</h1>
-			<h2>Big O Testing Tool</h2>
-			{data &&
-				data.map((test, t) => (
-					<div key={t}>
-						<h1>{test.testName}</h1>
-						{test.inputSets.map((set, s) => (
-							<div key={s}>
-								<p>Set Number: {set.setLabel}</p>
-								<p>
-									Functions:{' '}
-									{set.functions.map((fn, f) =>
-										f === set.functions.length - 1 ? fn : `${fn}, `
-									)}
-								</p>
-								<p>Results:</p>
-								{set.functions.map((fn, f) => (
-									<div key={f}>
-										<p>{fn}</p>
-										<Chart
-											data={set.inputs.map((input, i) => {
-												return {
-													x: input,
-													y: set.results[f][i],
-												};
-											})}
-										/>
-										{set.results[f].map((res, r) => (
-											<li key={r}>
-												Input: {set.inputs[r]} Result: {set.results[f][r]}
-											</li>
-										))}
-									</div>
-								))}
-							</div>
-						))}
-					</div>
-				))}
-		</Main>
+		<>
+			<h1>Otti: Big O Testing Tool</h1>
+			<Main>
+				{data &&
+					data.map((test, t) => (
+						<Fragment key={t}>
+							<h1>{test.testName}</h1>
+							{test.inputSets.map((set, s) => (
+								<div key={s}>
+									<p>Set Number: {set.setLabel}</p>
+									<p>
+										Functions:{' '}
+										{set.functions.map((fn, f) =>
+											f === set.functions.length - 1 ? fn : `${fn}, `
+										)}
+									</p>
+									<p>Results:</p>
+									{set.functions.map((fn, f) => (
+										<div key={f}>
+											<p>{fn}</p>
+											<Chart
+												data={set.inputs.map((input, i) => {
+													return {
+														x: input,
+														y: set.results[f][i],
+													};
+												})}
+											/>
+											{set.results[f].map((res, r) => (
+												<li key={r}>
+													Input: {set.inputs[r]} Result: {set.results[f][r]}
+												</li>
+											))}
+										</div>
+									))}
+								</div>
+							))}
+						</Fragment>
+					))}
+			</Main>
+		</>
 	);
 };
 
